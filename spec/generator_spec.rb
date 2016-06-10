@@ -5,16 +5,16 @@ describe Generator do
 
   it "can assign a team to a player" do
     generator = Generator.new(["Spain"], {"Nick" => 1})
-    generator.generatePlayers
-    generator.assignTeams
+    generator.generate_players
+    generator.assign_teams
     expect(generator.players[0].name).to eq "Nick"
     expect(generator.players[0].team_a).to eq "Spain"
   end
 
   it "can assign two teams to a player" do
     generator = Generator.new(["Spain", "Germany"], {"Nick" => 2})
-    generator.generatePlayers
-    generator.assignTeams
+    generator.generate_players
+    generator.assign_teams
     expect(generator.players[0].name).to eq "Nick"
     expect(generator.players[0].team_a).not_to eq ""
     expect(generator.players[0].team_b).not_to eq ""
@@ -22,8 +22,8 @@ describe Generator do
 
   it "will not assign two teams to a player expecting one team" do
     generator = Generator.new(["Spain", "Germany"], {"Nick" => 1})
-    generator.generatePlayers
-    generator.assignTeams
+    generator.generate_players
+    generator.assign_teams
     expect(generator.players[0].name).to eq "Nick"
     expect(generator.players[0].team_a).not_to eq ""
     expect(generator.players[0].team_b).to eq ""
@@ -31,15 +31,15 @@ describe Generator do
 
   it "knows if all the teams have been assigned" do
     generator = Generator.new(["Spain", "Germany"], {"Nick" => 2})
-    generator.generatePlayers
-    generator.assignTeams
+    generator.generate_players
+    generator.assign_teams
     expect(generator.all_teams_assigned?).to be true
   end
 
   it "knows if all the teams have not been assigned" do
     generator = Generator.new(["Spain", "Germany"], {"Nick" => 1})
-    generator.generatePlayers
-    generator.assignTeams
+    generator.generate_players
+    generator.assign_teams
     expect(generator.all_teams_assigned?).to be false
   end
 
@@ -50,7 +50,7 @@ describe Generator do
 
   it "knows how many teams there are to be assigned" do
     generator = Generator.new(["Spain", "Germany"], {"Nick" => 1})
-    generator.generatePlayers
+    generator.generate_players
     expect(generator.num_teams_to_be_assigned).to eq 1
   end
 

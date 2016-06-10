@@ -8,13 +8,13 @@ class Generator
     @players = []
   end
 
-  def generatePlayers
+  def generate_players
     @player_names.each do |name, num_teams|
       @players << Player.new(name, num_teams)
     end
   end
 
-  def assignTeams
+  def assign_teams
     @teams.shuffle!
     assign_first_team()
     assign_second_team()
@@ -105,10 +105,10 @@ if $0 == __FILE__
   players = players_work if ARGV[0] == "work"
 
 generator = Generator.new(teams, players)
-generator.generatePlayers
+generator.generate_players
 puts generator.num_teams.to_s + " teams fed into generator"
 puts generator.num_teams_to_be_assigned.to_s + " teams expected by input players"
-generator.assignTeams
+generator.assign_teams
 generator.players.each do |player|
   puts player.name + "  ---  \n Team A: " + player.team_a + "\n Team B: " + player.team_b
 end
